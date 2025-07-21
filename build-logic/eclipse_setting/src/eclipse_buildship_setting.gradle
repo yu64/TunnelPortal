@@ -1,0 +1,85 @@
+
+
+plugins {
+
+    id("eclipse_setting")
+}
+
+//==========================================================================
+//Eclipse buildshipの設定
+//==========================================================================
+
+
+ext {
+
+    isLibOfResource = false;
+}
+
+eclipse {
+
+    project {
+
+        buildCommand "org.eclipse.buildship.core.gradleprojectbuilder"
+        natures "org.eclipse.buildship.core.gradleprojectnature"
+    }
+
+    classpath.containers "org.eclipse.buildship.core.gradleclasspathcontainer"
+    
+}
+
+
+
+eclipse.classpath.file.whenMerged {classpath ->
+
+    if(!this.ext.isLibOfResource)
+    {
+        return;
+    }
+
+    //依存関係の余計な記述を削除
+    classpath.entries.removeAll {entry -> 
+
+        if(entry.kind == "lib")
+        {
+            println "delete classpath entry: " + entry.path;
+            return true;
+        } 
+
+        return false;
+    }
+
+}
+
+
+import java.nio.file.Files;
+
+// org.eclipse.buildship.core.prefs の生成
+tasks.eclipse.doLast {
+
+    File prefs = file(".settings/org.eclipse.buildship.core.prefs")
+    if(!prefs.exists())
+    {
+        String path = "";
+        if(rootProject != this)
+        {
+            //サブプロジェクトの場合、ルートプロジェクトへの相対パスを求める。
+            def root = rootProject.projectDir.toPath();
+            def sub = projectDir.toPath();
+            path = sub.relativize(root).toString();
+        }
+
+
+        Files.createDirectories(prefs.toPath().getParent());
+        prefs.createNewFile();
+        prefs.append("""
+            connection.project.dir=$path
+            eclipse.preferences.version=1
+            """.stripIndent())
+    }
+}
+
+tasks.cleanEclipse.doFirst {
+
+    File prefs = file(".settings/org.eclipse.buildship.core.prefs")
+    prefs.delete();
+}

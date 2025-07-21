@@ -1,13 +1,13 @@
 {
-  "name": "root",
+  "name": "tunnel-portal-root",
   "private": true,
   "workspaces": [
-    "flontend"
+    "apps/frontend"
   ],
   "scripts": {
-    "flontend:dev": "npm run -w flontend dev",
-    "flontend:build": "npm run -w flontend build",
-    "flontend:lint": "npm run -w flontend lint", 
-    "flontend:preview": "npm run -w flontend preview"
+    "frontend:dev": "npm run -w apps/frontend dev",
+    "frontend:build": "npm run -w apps/frontend build",
+    "frontend:lint": "npm run -w apps/frontend lint", 
+    "frontend:preview": "npm run -w apps/frontend preview"
   }
 }
