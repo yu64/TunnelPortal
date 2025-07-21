@@ -1,0 +1,13 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "flontend"
+  ],
+  "scripts": {
+    "flontend:dev": "npm run -w flontend dev",
+    "flontend:build": "npm run -w flontend build",
+    "flontend:lint": "npm run -w flontend lint", 
+    "flontend:preview": "npm run -w flontend preview"
+  }
+}
