@@ -33,21 +33,21 @@ eclipse.classpath.file.whenMerged {classpath ->
 
     if(this.ext.isUsedModule)
     {
-        // ライブラリ（lib）かつパスに "junit" を含むものをモジュールとしてマーク
-        classpath.entries.findAll {
-            it.properties.kind == 'lib' && it.properties.path.contains('junit')
-        }.each {
-            it.entryAttributes['module'] = 'true'
-            println "marked module classpath entry: " + it.path;
-        }
+        // // ライブラリ（lib）かつパスに "junit" を含むものをモジュールとしてマーク
+        // classpath.entries.findAll {
+        //     it.properties.kind == 'lib' && it.properties.path.contains('junit')
+        // }.each {
+        //     it.entryAttributes['module'] = 'true'
+        //     println "marked module classpath entry: " + it.path;
+        // }
 
-        // JREコンテナをモジュールとしてマーク
-        classpath.entries.findAll {
-            it.properties.path.startsWith('org.eclipse.jdt.launching.JRE_CONTAINER')
-        }.each {
-            it.entryAttributes['module'] = 'true'
-            println "marked module container: " + it.path;
-        }
+        // // JREコンテナをモジュールとしてマーク
+        // classpath.entries.findAll {
+        //     it.properties.path.startsWith('org.eclipse.jdt.launching.JRE_CONTAINER')
+        // }.each {
+        //     it.entryAttributes['module'] = 'true'
+        //     println "marked module container: " + it.path;
+        // }
     }
     else
     {
