@@ -31,5 +31,6 @@ dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.19.2")
 
-    
+    // https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema
+implementation("com.kjetland:mbknor-jackson-jsonschema_2.13:1.0.39")
 }

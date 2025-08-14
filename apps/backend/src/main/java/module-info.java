@@ -9,8 +9,6 @@ module app {
 
   // 公開
   exports app;
-  exports app.presentation;
-  exports app.infrastructure;
 
   // Picocli
   opens app to info.picocli;

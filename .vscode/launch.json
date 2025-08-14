@@ -8,9 +8,11 @@
       "type": "java",
       "name": "Backend",
       "request": "launch",
-      "mainClass": "app.Main",
+      "mainClass": "app/app.Main",
       "projectName": "backend",
       "args": [
+        "server",
+        "--help",
         "-c",
         "test/test.yaml"
       ]
