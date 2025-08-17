@@ -12,9 +12,8 @@
       "projectName": "backend",
       "args": [
         "server",
-        "--help",
         "-c",
-        "test/test.yaml"
+        "${workspaceFolder}/doc/sample.yaml"
       ]
     }
   ]

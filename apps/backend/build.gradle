@@ -13,6 +13,8 @@ plugins {
     id("eclipse_setting")
     id("eclipse_buildship_setting")
     id("eclipse_annotation_setting")
+
+    // id("org.javamodularity.moduleplugin") version "1.8.15"
 }
 
 
@@ -32,5 +34,5 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.19.2")
 
     // https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema
-implementation("com.kjetland:mbknor-jackson-jsonschema_2.13:1.0.39")
+    implementation("com.kjetland:mbknor-jackson-jsonschema_2.13:1.0.39")
 }

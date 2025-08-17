@@ -6,6 +6,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.concurrent.Callable;
 
 import app.infrastructure.ConfigParser;
+import app.infrastructure.TemplateWriter;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Spec;
@@ -23,11 +24,16 @@ public class CliCommand implements Callable<Integer>
   @Spec
   private CommandSpec spec;
   
+  private final TemplateWriter writer;
   private final ConfigParser configParser;
 
-  public CliCommand(ConfigParser configParser)
+  public CliCommand(
+    ConfigParser configParser,
+    TemplateWriter writer
+  )
   {
     this.configParser = configParser;
+    this.writer = writer;
   }
 
   @Override
@@ -48,7 +54,7 @@ public class CliCommand implements Callable<Integer>
       description = "Select Config File Path",
       defaultValue = "./config.yaml"
     )
-    String configPath
+    Path configPath
   )
   {
     try
@@ -81,12 +87,20 @@ public class CliCommand implements Callable<Integer>
       description = "Create config.yaml Template",
       defaultValue = "false"
     )
-    boolean isEnableConfig
+    boolean isEnableConfig,
+
+    @Option(
+      names = {"-s", "--config-schema"},
+      description = "Create config.yaml Schema",
+      defaultValue = "false"
+    )
+    boolean isEnableConfigSchema
   )
   {
     try
     {
-      Files.writeString(output, "config", StandardOpenOption.CREATE_NEW);
+      if(isEnableConfig) this.writer.saveConfig(output);
+      if(isEnableConfigSchema) this.writer.saveConfigSchema(output);
       return 0;
     }
     catch(Exception ex)

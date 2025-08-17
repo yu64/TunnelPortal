@@ -1,5 +1,11 @@
 package app.infrastructure;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
 import app.domain.config.Config;
 
 public class ConfigParser
@@ -9,10 +15,19 @@ public class ConfigParser
         // なし
     }
 
-    public Config parse(String path)
+    public Config parse(Path path)
     {
-        System.out.println(path);
-        // TODO: 実装は後で調整
-        return null;
+        try
+        {
+            String yaml = Files.readString(path);
+            ObjectMapper m = new ObjectMapper(new YAMLFactory());
+            Config config = m.readValue(yaml, Config.class);
+            return config;
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return null;
+        }
     }
 }
