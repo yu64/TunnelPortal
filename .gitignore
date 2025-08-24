@@ -46,6 +46,9 @@ node_modules
 .idea
 local.properties
 
+# Other
+output
+temp
 
 
 

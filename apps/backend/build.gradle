@@ -14,6 +14,7 @@ plugins {
     id("eclipse_buildship_setting")
     id("eclipse_annotation_setting")
 
+    // JMPSサポート(使わない)
     // id("org.javamodularity.moduleplugin") version "1.8.15"
 }
 
@@ -35,4 +36,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.kjetland/mbknor-jackson-jsonschema
     implementation("com.kjetland:mbknor-jackson-jsonschema_2.13:1.0.39")
+
+    // https://mvnrepository.com/artifact/io.github.classgraph/classgraph
+    implementation("io.github.classgraph:classgraph:4.8.179")
+    
+    // https://mvnrepository.com/artifact/org.scala-lang/scala-library
+    implementation("org.scala-lang:scala-library:2.13.16")
 }
+
+

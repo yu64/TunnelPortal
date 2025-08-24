@@ -3,12 +3,13 @@ package app.domain.config;
 import java.util.List;
 import java.util.Objects;
 
+import app.domain.Detector;
 import app.domain.GroupRunner;
 import app.domain.SingleRunner;
 
 public record Config(
   ServerConfig server,
-  List<DetectorConfig> detectors,
+  List<Detector<?>> detectors,
   List<GroupRunner> groupRunners,
   List<SingleRunner> singleRunners
 )

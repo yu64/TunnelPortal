@@ -6,7 +6,7 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Backend",
+      "name": "Backend_Server",
       "request": "launch",
       "mainClass": "app/app.Main",
       "projectName": "backend",
@@ -14,6 +14,19 @@
         "server",
         "-c",
         "${workspaceFolder}/doc/sample.yaml"
+      ]
+    },
+    {
+      "type": "java",
+      "name": "Backend_Schema",
+      "request": "launch",
+      "mainClass": "app/app.Main",
+      "projectName": "backend",
+      "args": [
+        "init",
+        "--config-schema",
+        "--output",
+        "${workspaceFolder}/output/schema.json"
       ]
     }
   ]

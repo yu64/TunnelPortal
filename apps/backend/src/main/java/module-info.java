@@ -8,9 +8,13 @@ module app {
   requires transitive com.fasterxml.jackson.dataformat.yaml;
   requires transitive mbknor.jackson.jsonschema;
   requires transitive info.picocli;
+  requires transitive scala.library;
+  requires transitive io.github.classgraph;
 
   // 公開
   exports app;
+  exports app.domain to com.fasterxml.jackson.databind;
+  exports app.application.os to com.fasterxml.jackson.databind;
   exports app.domain.config;
 
   // Picocli

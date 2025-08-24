@@ -1,8 +1,6 @@
 package app.presentation;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.concurrent.Callable;
 
 import app.infrastructure.ConfigParser;
@@ -78,7 +76,7 @@ public class CliCommand implements Callable<Integer>
     @Option(
       names = {"-o", "--output"},
       description = "Output Path",
-      defaultValue = "."
+      defaultValue = "./schema.json"
     )
     Path output,
 

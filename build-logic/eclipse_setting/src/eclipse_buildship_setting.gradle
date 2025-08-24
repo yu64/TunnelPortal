@@ -24,23 +24,33 @@ eclipse {
     }
 
     classpath.containers "org.eclipse.buildship.core.gradleclasspathcontainer"
-    
+
 }
 
 
 
+
+
 // eclipse.classpath.file.whenMerged {classpath ->
-// 
+
 //     if(this.ext.isUsedModule)
 //     {
 //         // ライブラリをモジュールとしてマーク
 //         classpath.entries.findAll {
-//             it.properties.kind == 'lib'
+//             it.properties.kind == 'lib' && it.entryAttributes['test'] != 'true'
 //         }.each {
 //             it.entryAttributes['module'] = 'true'
 //             println "marked module classpath entry: " + it.path;
 //         }
-// 
+
+//         // テストライブラリを非モジュールとしてマーク
+//         classpath.entries.findAll {
+//             it.properties.kind == 'lib' && it.entryAttributes['test'] == 'true'
+//         }.each {
+//             it.entryAttributes['module'] = 'false'
+//             println "unmarked classpath entry: " + it.path;
+//         }
+
 //         // JREコンテナをモジュールとしてマーク
 //         classpath.entries.findAll {
 //             it.properties.path.startsWith('org.eclipse.jdt.launching.JRE_CONTAINER')
@@ -53,13 +63,13 @@ eclipse {
 //     {
 //         // //依存関係の余計な記述を削除
 //         // classpath.entries.removeAll {entry ->
-// 
+
 //         //     if(entry.kind == "lib")
 //         //     {
 //         //         println "delete classpath entry: " + entry.path;
 //         //         return true;
 //         //     }
-// 
+
 //         //     return false;
 //         // }
 //     }
