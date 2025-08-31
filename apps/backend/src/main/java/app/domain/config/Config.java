@@ -9,7 +9,7 @@ import app.domain.SingleRunner;
 
 public record Config(
   ServerConfig server,
-  List<Detector<?>> detectors,
+  List<Detector> detectors,
   List<GroupRunner> groupRunners,
   List<SingleRunner> singleRunners
 )

@@ -14,10 +14,10 @@ module app {
   // 公開
   exports app;
   exports app.domain to com.fasterxml.jackson.databind;
-  exports app.application.os to com.fasterxml.jackson.databind;
+  exports app.application.detector to com.fasterxml.jackson.databind;
   exports app.domain.config;
 
-  // Picocli
+  // リフレクションアクセス
   opens app to info.picocli;
   opens app.presentation to info.picocli;
   

@@ -1,4 +1,10 @@
 
+# yaml-language-server: $schema=../output/schema.json
+
 server:
   port: 8080
+
+detectors:
+  - type: WindowsNetstatDetector
+    name: "Netstat"
 

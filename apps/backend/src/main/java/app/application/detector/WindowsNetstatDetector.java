@@ -1,4 +1,4 @@
-package app.application.os;
+package app.application.detector;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,22 +16,15 @@ import app.domain.value.LocalUrl;
 import app.domain.value.TunnelName;
 import app.domain.value.TunnelStatus;
 
-public record WindowsDetector(
-  String name,
-  WindowsDetectorConfig config
-) implements Detector<WindowsDetectorConfig>
+public record WindowsNetstatDetector(
+  String name
+) implements Detector
 {
 
   @Override
   public String getName()
   {
     return this.name();
-  }
-
-  @Override
-  public WindowsDetectorConfig getConfig()
-  {
-    return this.config();
   }
 
   @Override

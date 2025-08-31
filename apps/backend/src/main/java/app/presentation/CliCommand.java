@@ -3,12 +3,13 @@ package app.presentation;
 import java.nio.file.Path;
 import java.util.concurrent.Callable;
 
+import app.domain.config.Config;
 import app.infrastructure.ConfigParser;
 import app.infrastructure.TemplateWriter;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Spec;
-import picocli.CommandLine.Model.CommandSpec;
 
 @Command(
   name = "tunnel-portal",
@@ -57,7 +58,7 @@ public class CliCommand implements Callable<Integer>
   {
     try
     {
-      configParser.parse(configPath);
+      Config config = configParser.parse(configPath);
       return 0;
     }
     catch(Exception e)

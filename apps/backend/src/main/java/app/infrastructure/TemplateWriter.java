@@ -5,19 +5,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kjetland.jackson.jsonSchema.JsonSchemaConfig;
 import com.kjetland.jackson.jsonSchema.JsonSchemaGenerator;
 
+import app.Main;
 import app.domain.config.Config;
+import app.util.ClassUtil;
 import app.util.Scala2Util;
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
-import io.github.classgraph.ScanResult;
 
 public class TemplateWriter
 {
@@ -64,28 +63,10 @@ public class TemplateWriter
   
   private scala.collection.immutable.List<Class<?>> resolveSubClass(Class<?> base)
   {
-    try(
-      ScanResult scanResult = new ClassGraph()
-        .enableClassInfo()
-        .scan()
-    )
-    {
-      ClassInfo parentInfo = scanResult.getClassInfo(base.getName());
-      if(parentInfo == null) return Scala2Util.toScalaList(List.of());
-      
-      return Scala2Util.toScalaList(
-        parentInfo.getClassesImplementing()
-          .stream()
-          .filter(info -> !info.isAbstract() && !info.isInterface())
-          .map(info -> info.loadClass())
-          .collect(Collectors.toList())
-      );
-    }
-    catch(Exception e)
-    {
-      e.printStackTrace();
-      return Scala2Util.toScalaList(List.of());
-    }
+    return Scala2Util.toScalaList(new ArrayList<>(ClassUtil.findSubclasses(
+      List.of(Main.class.getPackage()),
+      List.of(base))
+    ));
   }
 
 }
