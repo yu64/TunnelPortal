@@ -25,14 +25,17 @@ public class CliCommand implements Callable<Integer>
   
   private final TemplateWriter writer;
   private final ConfigParser configParser;
+  private final WebServer server;
 
   public CliCommand(
     ConfigParser configParser,
-    TemplateWriter writer
+    TemplateWriter writer,
+    WebServer server
   )
   {
     this.configParser = configParser;
     this.writer = writer;
+    this.server = server;
   }
 
   @Override
@@ -59,6 +62,7 @@ public class CliCommand implements Callable<Integer>
     try
     {
       Config config = configParser.parse(configPath);
+      this.server.start(config);
       return 0;
     }
     catch(Exception e)

@@ -42,6 +42,9 @@ dependencies {
     
     // https://mvnrepository.com/artifact/org.scala-lang/scala-library
     implementation("org.scala-lang:scala-library:2.13.16")
+
+    // https://mvnrepository.com/artifact/io.javalin/javalin
+    implementation("io.javalin:javalin:6.7.0")
 }
 
 

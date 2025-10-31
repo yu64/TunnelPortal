@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import app.domain.Detector;
@@ -16,15 +17,27 @@ import app.domain.value.LocalUrl;
 import app.domain.value.TunnelName;
 import app.domain.value.TunnelStatus;
 
-public record WindowsNetstatDetector(
-  String name
-) implements Detector
+public class WindowsNetstatDetector implements Detector
 {
+  private String uuid;
+  private String name;
+
+  public WindowsNetstatDetector(String name)
+  {
+    this.name = name;
+    this.uuid = UUID.randomUUID().toString();
+  }
+  
+  @Override
+  public String getId()
+  {
+    return this.uuid;
+  }
 
   @Override
   public String getName()
   {
-    return this.name();
+    return this.name;
   }
 
   @Override

@@ -10,6 +10,7 @@ module app {
   requires transitive info.picocli;
   requires transitive scala.library;
   requires transitive io.github.classgraph;
+  requires transitive io.javalin;
 
   // 公開
   exports app;
@@ -20,5 +21,5 @@ module app {
   // リフレクションアクセス
   opens app to info.picocli;
   opens app.presentation to info.picocli;
-  
+  opens app.application.detector to com.fasterxml.jackson.databind;
 }

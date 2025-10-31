@@ -3,6 +3,7 @@ package app;
 import app.infrastructure.ConfigParser;
 import app.infrastructure.TemplateWriter;
 import app.presentation.CliCommand;
+import app.presentation.WebServer;
 import picocli.CommandLine;
 
 public class Main
@@ -11,11 +12,12 @@ public class Main
     {
         TemplateWriter writer = new TemplateWriter();
         ConfigParser configParser = new ConfigParser();
-
+        WebServer server = new WebServer();
 
         CliCommand cmd = new CliCommand(
             configParser,
-            writer
+            writer,
+            server
         );
 
         CommandLine cmdLine = new CommandLine(cmd);

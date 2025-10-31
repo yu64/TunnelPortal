@@ -13,7 +13,8 @@ plugins {
 boolean isModuleProject() {
     def isModule = false
     sourceSets.all { sourceSet ->
-        if (sourceSet.hasProperty('java') && sourceSet.java.srcDirs) {
+
+        if(sourceSet.hasProperty('java') && sourceSet.java.srcDirs) {
             def moduleInfo = sourceSet.java.srcDirs.find { dir ->
                 new File(dir, 'module-info.java').exists()
             }
@@ -31,7 +32,9 @@ afterEvaluate {
     println "Project is a module project: ${moduleProject}"
 
     eclipse.classpath.file.whenMerged { classpath ->
-        if (moduleProject) {
+        if(moduleProject){
+
+            // モジュール時
             classpath.entries.findAll {
                 it.properties.kind == 'lib' && it.entryAttributes['test'] != 'true'
             }.each {
@@ -53,8 +56,9 @@ afterEvaluate {
                 println "marked module container: " + it.path
             }
         } else {
+            // 非モジュール時
             classpath.entries.removeAll { entry ->
-                if (entry.kind == "lib") {
+                if(entry.kind == "lib") {
                     println "delete classpath entry: " + entry.path
                     return true
                 }
@@ -63,7 +67,7 @@ afterEvaluate {
         }
     }
 
-    if (moduleProject) {
+    if(moduleProject) {
         // eclipse.classpath.containers "org.eclipse.jdt.launching.JRE_CONTAINER"
     } else {
         eclipse.classpath.containers "org.eclipse.buildship.core.gradleclasspathcontainer"

@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.SIMPLE_NAME, property = "type")
 public interface Detector
 {
+  /** 自動生成されるID */
+  @JsonIgnore
+  public String getId();
+
   /** 識別名称 */
   @JsonProperty(required = true)
   public String getName();
