@@ -14,8 +14,7 @@ public class WsEventBus<T>
   private Set<WsContext> ctxSet = Collections.synchronizedSet(new HashSet<>());
 
   public WsEventBus(
-    Logger logger,
-    Consumer<T> func
+    Logger logger
   )
   {
     this.logger = logger;
