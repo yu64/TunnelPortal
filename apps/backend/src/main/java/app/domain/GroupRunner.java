@@ -20,7 +20,7 @@ public interface GroupRunner
   CompletableFuture<List<TunnelItem>> start(List<TunnelItem> tunnels);
 
   /** トンネルを停止する。成功すればtrue */
-  boolean stop();
+  CompletableFuture<Boolean> stop();
 
   /** トンネルの現在の状態を取得（オプション） */
   @JsonIgnore

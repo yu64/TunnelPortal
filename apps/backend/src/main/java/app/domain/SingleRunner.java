@@ -20,7 +20,7 @@ public interface SingleRunner
   CompletableFuture<List<TunnelItem>> start(TunnelItem tunnel);
 
   /** トンネルを停止する。成功すればtrue */
-  boolean stop();
+  CompletableFuture<Boolean> stop();
 
   /** トンネルの現在の状態を取得（オプション） */
   @JsonIgnore
